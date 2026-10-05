@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Task Manager</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main>
+    <h1>Task Manager</h1>
+
+    <section>
+      <h2>New task</h2>
+      <form id="task-form">
+        <input type="text" id="title" maxlength="200" placeholder="e.g. Create a marketing campaign" required>
+        <input type="datetime-local" id="due" required>
+        <div class="presets">
+          <span>Due in:</span>
+          <button type="button" data-days="1">+1 day</button>
+          <button type="button" data-days="7">+1 week</button>
+          <button type="button" data-days="14">+2 weeks</button>
+        </div>
+        <button type="submit">Add task</button>
+      </form>
+      <p id="form-error" class="error"></p>
+    </section>
+
+    <section>
+      <h2>Tasks</h2>
+      <p id="last-updated" class="muted"></p>
+      <ul id="task-list"></ul>
+    </section>
+
+    <section>
+      <h2>Export CSV</h2>
+      <form id="export-form">
+        <label>From <input type="date" id="export-start" required></label>
+        <label>To <input type="date" id="export-end" required></label>
+        <label>Filter by
+          <select id="export-field">
+            <option value="created_at">Created date</option>
+            <option value="due_at">Due date</option>
+          </select>
+        </label>
+        <button type="submit">Download CSV</button>
+      </form>
+    </section>
+  </main>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
